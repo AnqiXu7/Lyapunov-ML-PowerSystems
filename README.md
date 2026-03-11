@@ -54,63 +54,20 @@ Finally, this pipeline converts mathematical stability analysis into a machine l
 
 The dataset in this project is constructed from multiple power-system-related nonlinear dynamical systems and their corresponding Lyapunov functions. Based on the uploaded Python implementations, the dataset can be organised from three perspectives: source, mathematical structure, and state dimension.
 
-### 1. Dataset Categories by Source
+## Dataset Summary Table
 
-#### Literature-based benchmark systems
-These datasets are derived from published power system stability models and reference papers.
+| ID | System Description | Dimension | Equation Structure | Lyapunov Function | Source |
+|----|--------------------|-----------|--------------------|-------------------|--------|
+| 01 | Nonlinear multi-machine swing-equation system | 6D | Trigonometric coupling between rotor angles and frequencies | Quadratic energy-type Lyapunov function | Based on power system transient stability models |
+| 02 | Reduced two-state nonlinear swing system | 2D | Angle–frequency nonlinear dynamics with sin coupling | Quadratic Lyapunov function with trigonometric terms | Classical transient stability benchmark |
+| 03 | Polynomial recast power system stability model | 4D | Polynomial differential-algebraic representation of power system dynamics | SOS-based polynomial Lyapunov function | Anghel et al., Algorithmic Construction of Lyapunov Functions |
+| 04 | Two-machine infinite-bus power system model | 4D | Nonlinear swing equations expressed in shifted coordinates | Polynomial Lyapunov function constructed via SOS optimisation | Anghel et al., 2013 |
+| 05 | Synthetic nonlinear benchmark system | 3D | Trigonometric nonlinear coupled ODE system | Quadratic Lyapunov candidate | Synthetic dataset constructed in this project |
+| 06 | Double-machine infinite-bus system | 4D | Nonlinear swing equations with rational Lyapunov structure | Rational Lyapunov function | Han et al., Optimal Rational Lyapunov Functions |
+| 07 | Coupled nonlinear benchmark system | 3D | Nonlinear coupled ODE dynamics | Quadratic Lyapunov function | Synthetic dataset constructed in this project |
+| 08 | Virtual Synchronous Generator transient stability model | 2D | Nonlinear inverter swing dynamics | Lyapunov function derived for VSG stability analysis | VSG transient stability literature |
 
-- **01**: Kundur 3-generator reduced model
-- **02**: Classical 2-bus system
-- **03/04**: Multi-machine benchmark models based on literature-reported nonlinear dynamics
-- **05**: 3-state nonlinear system
-- **06**: Double-machine versus infinite bus system with rational Lyapunov function
-- **07**: 3-state nonlinear coupled system
-- **08**: Virtual Synchronous Generator (VSG) transient stability model
-
-### 2. Dataset Categories by Mathematical Structure
-
-#### Trigonometric nonlinear systems
-Most systems contain nonlinear trigonometric terms such as `sin(.)` and `cos(.)`, which are commonly found in power system swing dynamics and energy-function-based stability analysis.
-
-Included systems:
-- 01
-- 02
-- 03/04
-- 05
-- 07
-- 08
-
-#### Rational Lyapunov systems
-Some systems use rational Lyapunov functions, introducing more complex symbolic structures.
-
-Included systems:
-- 06
-
-#### Control-loop-augmented systems
-These extend the base nonlinear system by adding additional control dynamics.
-
-Included systems:
-- 08_control_loop
-
-### 3. Dataset Categories by State Dimension
-
-#### 2-state systems
-- 02
-- 08
-
-#### 3-state systems
-- 05
-- 07
-- 08_control_loop
-
-#### 4-state systems
-- 03/04
-- 06
-
-#### 6-state systems
-- 01
-
-### 4. Dataset Generation Strategy
+### Dataset Generation Strategy
 
 For each system, two levels of scripts are maintained:
 
@@ -120,7 +77,7 @@ For each system, two levels of scripts are maintained:
 2. **Dataset generator scripts**  
    These convert symbolic expressions into tokenised machine-learning-compatible samples and generate train/valid/test datasets.
 
-### 5. File Mapping
+### File Mapping
 
 #### Base system scripts
 - `01.py`
@@ -141,7 +98,7 @@ For each system, two levels of scripts are maintained:
 - `08_dataset_generator.py`
 - `08_control_loop_dataset_generator.py`
   
-### 6. Common Dataset Format
+### Common Dataset Format
 
 Each sample follows the format:
 
