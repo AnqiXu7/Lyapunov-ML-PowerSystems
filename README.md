@@ -56,16 +56,15 @@ The dataset in this project is constructed from multiple power-system-related no
 
 ## Dataset Summary Table
 
-| ID | System Description | Dimension | Equation Structure | Lyapunov Function | Source |
-|----|--------------------|-----------|--------------------|-------------------|--------|
-| 01 | Nonlinear multi-machine swing-equation system | 6D | Trigonometric coupling between rotor angles and frequencies | Quadratic energy-type Lyapunov function | Based on power system transient stability models |
-| 02 | Reduced two-state nonlinear swing system | 2D | Angle–frequency nonlinear dynamics with sin coupling | Quadratic Lyapunov function with trigonometric terms | Classical transient stability benchmark |
-| 03 | Polynomial recast power system stability model | 4D | Polynomial differential-algebraic representation of power system dynamics | SOS-based polynomial Lyapunov function | Anghel et al., Algorithmic Construction of Lyapunov Functions |
-| 04 | Two-machine infinite-bus power system model | 4D | Nonlinear swing equations expressed in shifted coordinates | Polynomial Lyapunov function constructed via SOS optimisation | Anghel et al., 2013 |
-| 05 | Synthetic nonlinear benchmark system | 3D | Trigonometric nonlinear coupled ODE system | Quadratic Lyapunov candidate | Synthetic dataset constructed in this project |
-| 06 | Double-machine infinite-bus system | 4D | Nonlinear swing equations with rational Lyapunov structure | Rational Lyapunov function | Han et al., Optimal Rational Lyapunov Functions |
-| 07 | Coupled nonlinear benchmark system | 3D | Nonlinear coupled ODE dynamics | Quadratic Lyapunov function | Synthetic dataset constructed in this project |
-| 08 | Virtual Synchronous Generator transient stability model | 2D | Nonlinear inverter swing dynamics | Lyapunov function derived for VSG stability analysis | VSG transient stability literature |
+| ID | System Description | Dimension | Source |
+|----|--------------------|-----------|--------|
+| 01 | Nonlinear multi-machine swing-equation system | 6D | Trigonometric coupling between rotor angles and frequencies | Quadratic energy-type Lyapunov function | T. L. Vu and K. Turitsyn, "Lyapunov Functions Family Approach to Transient Stability Assessment," in IEEE Transactions on Power Systems, vol. 31, no. 2, pp. 1269-1277, March 2016, doi: 10.1109/TPWRS.2015.2425885. |
+| 02 | Reduced two-state nonlinear swing system | 2D | Angle–frequency nonlinear dynamics with sin coupling | Quadratic Lyapunov function with trigonometric terms | T. L. Vu and K. Turitsyn, "Lyapunov Functions Family Approach to Transient Stability Assessment," in IEEE Transactions on Power Systems, vol. 31, no. 2, pp. 1269-1277, March 2016, doi: 10.1109/TPWRS.2015.2425885. |
+| 03 | 3-machine Classical power system (non-polynomial swing equations without transfer conductances) | 4D | M. Anghel, F. Milano and A. Papachristodoulou, "Algorithmic Construction of Lyapunov Functions for Power System Stability Analysis," in IEEE Transactions on Circuits and Systems I: Regular Papers, vol. 60, no. 9, pp. 2533-2546, Sept. 2013, doi: 10.1109/TCSI.2013.2246233. |
+| 04 | 2-machine vs infinite-bus Classical power system (non-polynomial swing equations with conductances) | 4D | M. Anghel, F. Milano and A. Papachristodoulou, "Algorithmic Construction of Lyapunov Functions for Power System Stability Analysis," in IEEE Transactions on Circuits and Systems I: Regular Papers, vol. 60, no. 9, pp. 2533-2546, Sept. 2013, doi: 10.1109/TCSI.2013.2246233. |
+| 05 | Structure-preserving multimachine power system in Lur’e form | 2D | Z. Qiu, C. Duan, W. Yao, P. Zeng and L. Jiang, "Adaptive Lyapunov Function Method for Power System Transient Stability Analysis," in IEEE Transactions on Power Systems, vol. 38, no. 4, pp. 3331-3344, July 2023, doi: 10.1109/TPWRS.2022.3199448.|
+| 06 | Polynomial swing-system model with a rational Lyapunov function obtained via optimization | 4D | Rational Lyapunov function | D. Han, A. El-Guindy and M. Althoff, "Power systems transient stability analysis via optimal rational Lyapunov functions," 2016 IEEE Power and Energy Society General Meeting (PESGM), Boston, MA, USA, 2016, pp. 1-5, doi: 10.1109/PESGM.2016.7741322. |
+| 07 | Constructed Lyapunov function for a reduced second-order VSG model (non-energy, parameter-dependent) | 2D | Z. Shuai, C. Shen, X. Liu, Z. Li and Z. J. Shen, "Transient Angle Stability of Virtual Synchronous Generators Using Lyapunov’s Direct Method," in IEEE Transactions on Smart Grid, vol. 10, no. 4, pp. 4648-4661, July 2019, doi: 10.1109/TSG.2018.2866122.  |
 
 ### Dataset Generation Strategy
 
@@ -86,7 +85,6 @@ For each system, two levels of scripts are maintained:
 - `05.py`
 - `06.py`
 - `07.py`
-- `08.py`
 
 #### Dataset generator scripts
 - `01_dataset_generator.py`
@@ -95,14 +93,13 @@ For each system, two levels of scripts are maintained:
 - `05_dataset_generator.py`
 - `06_dataset_generator.py`
 - `07_dataset_generator.py`
-- `08_dataset_generator.py`
-- `08_control_loop_dataset_generator.py`
+- `07_control_loop_dataset_generator.py`
   
 ### Common Dataset Format
 
 Each sample follows the format:
 
-`1| <Original function tokens> \t <Lyapunov function tokens>\n`
+`1| Dimension <Original function tokens> \t <Lyapunov function tokens>\n`
 
 where:
 
