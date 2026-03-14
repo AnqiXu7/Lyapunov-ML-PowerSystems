@@ -1,5 +1,0 @@
-Generating Kundur power system dataset
-Target samples: 10000
-Physical constraints enabled:
-  1) equilibrium edge angles satisfy |delta_ij*| < pi
-  2) stronger convex-region filter |delta_ij*| < pi/2
